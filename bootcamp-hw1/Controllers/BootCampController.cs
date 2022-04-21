@@ -77,8 +77,7 @@ namespace bootcamp_hw1.Controllers
             }
             catch(Exception ex)
             {
-                Console.WriteLine($"An error occurred when deleting: {ex.Message}");
-                return null;
+                return BadRequest($"An error occurred when deleting: {ex.Message}");
             }
         }
         [HttpGet("{Id}/searchById")]
