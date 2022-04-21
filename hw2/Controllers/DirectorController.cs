@@ -29,14 +29,22 @@ namespace Controllers
             return await directorService.GetAllAsync();
         }
         
-        /*[HttpPost]
+        [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody] SaveDirectorResource resource)
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
             var addedDirector = mapper.Map<SaveDirectorResource, Director>(resource);
-            var result = await 
-        }*/
+            var result = await directorService.SaveAsync(addedDirector);
+
+            if(!result.success)
+                return BadRequest(result.message);
+            
+            var directorResource = mapper.Map<Director, DirectorResource>(result.director);
+            return Ok(directorResource);
+        }
+
+        
         
     }
 }
