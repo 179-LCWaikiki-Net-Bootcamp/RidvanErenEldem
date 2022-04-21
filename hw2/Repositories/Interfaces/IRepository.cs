@@ -12,6 +12,5 @@ namespace Repositories.Interfaces
         Task Insert(T obj);
         void Update(T obj);
         void Remove(T obj);
-        void Save();
     }
 }

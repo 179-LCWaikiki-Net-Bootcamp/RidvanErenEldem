@@ -42,10 +42,5 @@ namespace Repositories
         {
             table.Update(obj);
         }
-
-        public void Save()
-        {
-            context.SaveChanges();
-        }
     }
 }
