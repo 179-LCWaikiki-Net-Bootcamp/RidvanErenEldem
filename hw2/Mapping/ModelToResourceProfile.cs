@@ -12,7 +12,8 @@ namespace Mapping
     {
         public ModelToResourceProfile()
         {
-             CreateMap<Director, DirectorResource>();
+            CreateMap<Director, DirectorResource>(MemberList.None);
+            CreateMap<SaveDirectorResource, Director>(MemberList.None);
         }
     }
 }
