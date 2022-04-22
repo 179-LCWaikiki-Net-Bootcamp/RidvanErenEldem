@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Models;
 using Repositories.Interfaces;
+using Resources;
 using Response;
 using Services.Interfaces;
 
@@ -84,7 +85,35 @@ namespace Services
             {
                 return new MovieResponse($"An error occurred when updating movie: {ex.Message}");
             }
-            
+        }
+        public async Task<List<Movie>> Search(SearchMovieResource resource)
+        {
+            if (resource == null)
+                return null;
+            var list = new List<Movie>();
+
+            if(resource.Id != null)
+            {
+                var existing = await movieRepository.GetByIdAsync(resource.Id);
+                list.Add(existing);
+            }
+            if(resource.Title != null)
+            {
+                var existing = await movieRepository.GetByTitleAsync(resource.Title);
+                foreach(var exist in existing)
+                {
+                    list.Add(exist);
+                }
+            }
+            if(resource.DirectorId != null)
+            {
+                var existing = await movieRepository.GetByDirectorIdAsync((int)resource.DirectorId);
+                foreach(var exist in existing)
+                {
+                    list.Add(exist);
+                }
+            }
+            return list;
         }
     }
 }

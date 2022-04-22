@@ -73,7 +73,7 @@ namespace Controllers
         {
             var found = await directorService.Search(resource);
             if(found == null)
-                return Ok("Can not find director");
+                return BadRequest("Can not find director");
             return Ok(found);
         } 
     }

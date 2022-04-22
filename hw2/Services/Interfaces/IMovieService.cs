@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Models;
+using Resources;
 using Response;
 
 namespace Services.Interfaces
@@ -13,5 +14,6 @@ namespace Services.Interfaces
         Task<List<Movie>> GetAllAsync();
         Task<MovieResponse> UpdateAsync(int id, Movie movie);
         Task<MovieResponse> DeleteAsync(int id);
+        Task<List<Movie>> Search(SearchMovieResource resource);
     }
 }

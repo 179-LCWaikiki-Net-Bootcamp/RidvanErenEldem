@@ -9,5 +9,7 @@ namespace Repositories.Interfaces
     public interface IMovieRepository : IRepository<Movie>
     {
         Task<List<Movie>> GetAllAsyncWithForegin();
+        Task<List<Movie>> GetByTitleAsync(string title);
+        Task<List<Movie>> GetByDirectorIdAsync(int directorId);
     }
 }

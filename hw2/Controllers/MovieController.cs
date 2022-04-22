@@ -59,5 +59,23 @@ namespace Controllers
             var movieResource = mapper.Map<Movie, MovieResource>(result.movie);
             return Ok(movieResource);
         }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            var result = await movieService.DeleteAsync(id);
+            if(!result.success)
+                return BadRequest(result.message);
+            
+            var movieResource = mapper.Map<Movie, MovieResource>(result.movie);
+            return Ok(movieResource);
+        }
+        [HttpPut("search")]
+        public async Task<ActionResult> GetBySearch([FromBody] SearchMovieResource resource)
+        {
+            var found = await movieService.Search(resource);
+            if(found == null)
+                return BadRequest("Can not find movie");
+            return Ok(found);
+        }
     }
 }
