@@ -49,6 +49,9 @@ namespace hw2
 
             services.AddScoped<IDirectorService, DirectorSerivce>();
             services.AddScoped<IDirectorRepository, DirectorRepository>();
+
+            services.AddScoped<IMovieService, MovieService>();
+            services.AddScoped<IMovieRepository, MovieRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

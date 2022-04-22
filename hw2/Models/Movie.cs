@@ -14,7 +14,7 @@ namespace Models
         public string Genre { get; set; }
         public DateTime ReleaseDate { get; set; }
         public byte? Rating { get; set; }
-        [Display(Name = "Director")]
+        [Display(Name = "Name")]
         public virtual int DirectorId { get; set; }
         [ForeignKey("DirectorId")]
         public virtual Director Directors { get; set; }
