@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Models;
+using Resources;
 using Response;
 
 namespace Services.Interfaces
@@ -14,5 +15,7 @@ namespace Services.Interfaces
         Task<List<Director>> GetAllAsync();
         Task<DirectorResponse> UpdateAsync(int id, Director director);
         Task<DirectorResponse> DeleteAsync(int id);
+
+        Task<List<Director>> Search(SearchDirectorResource resource);
     }
 }

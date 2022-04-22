@@ -9,6 +9,7 @@ namespace Repositories.Interfaces
 {
     public interface IDirectorRepository : IRepository<Director>
     {
-        
+        Task<List<Director>> GetByNameAsync(string name);
+        Task<List<Director>> GetByBirthDateAsync(DateTime birthDate);
     }
 }

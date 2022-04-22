@@ -68,5 +68,13 @@ namespace Controllers
             var directorResource = mapper.Map<Director, DirectorResource>(result.director);
             return Ok(directorResource);
         }
+        [HttpPut("search")]
+        public async Task<ActionResult<List<Director>>> GetBySearch([FromBody] SearchDirectorResource resource)
+        {
+            var found = await directorService.Search(resource);
+            if(found == null)
+                return Ok("Can not find director");
+            return Ok(found);
+        } 
     }
 }

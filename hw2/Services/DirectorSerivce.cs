@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Models;
 using Repositories.Interfaces;
+using Resources;
 using Response;
 using Services.Interfaces;
 
@@ -80,6 +81,36 @@ namespace Services
             {
                 return new DirectorResponse($"An error occurred while removing director: {ex.Message}");
             }
+        }
+
+        public async Task<List<Director>> Search(SearchDirectorResource resource)
+        {
+            if(resource == null)
+                return null;
+            var list = new List<Director>();
+            
+            if(resource.Id != null)
+            {
+                var existing = await directorRepository.GetByIdAsync(resource.Id);
+                list.Add(existing);
+            }
+            if(resource.Name != null)
+            {
+                var existing = await directorRepository.GetByNameAsync(resource.Name);
+                foreach(var exist in existing)
+                {
+                    list.Add(exist);
+                }
+            }
+            if(resource.Birthday != null)
+            {
+                var existing = await directorRepository.GetByBirthDateAsync((DateTime)resource.Birthday);
+                foreach(var exist in existing)
+                {
+                    list.Add(exist);
+                }
+            }
+            return list;
         }
     }
 }

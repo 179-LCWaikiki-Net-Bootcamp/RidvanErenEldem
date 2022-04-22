@@ -11,7 +11,7 @@ namespace Repositories
     public class Repository<T> : IRepository<T> where T : class
     {
         protected readonly AppDbContext context;
-        private readonly DbSet<T> table;
+        protected readonly DbSet<T> table;
 
         public Repository(AppDbContext context)
         {
