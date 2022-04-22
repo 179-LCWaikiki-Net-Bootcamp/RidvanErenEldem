@@ -43,5 +43,21 @@ namespace Controllers
             var movieResource = mapper.Map<Movie, MovieResource>(result.movie);
             return Ok(movieResource);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateAsync(int id,[FromBody] SaveMovieResource resource)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState.GetErrorMessages());
+            
+            var updatedMovie = mapper.Map<SaveMovieResource, Movie>(resource);
+            var result = await movieService.UpdateAsync(id, updatedMovie);
+
+            if(!result.success)
+                return BadRequest(result.message);
+            
+            var movieResource = mapper.Map<Movie, MovieResource>(result.movie);
+            return Ok(movieResource);
+        }
     }
 }

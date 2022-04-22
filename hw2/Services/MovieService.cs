@@ -15,13 +15,10 @@ namespace Services
         private readonly IMovieRepository movieRepository;
         private readonly IUnitOfWork unitOfWork;
 
-        private readonly IMapper mapper;
-
-        public MovieService(IMovieRepository movieRepository, IUnitOfWork unitOfWork, IMapper mapper)
+        public MovieService(IMovieRepository movieRepository, IUnitOfWork unitOfWork)
         {
             this.movieRepository = movieRepository;
             this.unitOfWork = unitOfWork;
-            this.mapper = mapper;
         }
         public async Task<MovieResponse> DeleteAsync(int id)
         {
@@ -70,8 +67,12 @@ namespace Services
             if(existing == null)
                 return new MovieResponse("Movie Not Found");
             
-            existing = mapper.Map<Movie, Movie>(movie);
-            
+            existing.Title = movie.Title;
+            existing.Genre = movie.Genre;
+            existing.ReleaseDate = movie.ReleaseDate;
+            existing.Rating = movie.Rating;
+            existing.DirectorId = movie.DirectorId;
+
             try
             {
                 movieRepository.Update(existing);
