@@ -44,7 +44,20 @@ namespace Controllers
             return Ok(directorResource);
         }
 
-        
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateAsync(int id, [FromBody] SaveDirectorResource resource)
+        {
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState.GetErrorMessages());
+            var updatedDirector = mapper.Map<SaveDirectorResource,Director>(resource);
+            var result = await directorService.UpdateAsync(id,updatedDirector);
+             
+            if(!result.success)
+                return BadRequest(result.message);
+
+            var directorResource = mapper.Map<Director, DirectorResource>(result.director);
+            return Ok(directorResource);
+        }
         
     }
 }
