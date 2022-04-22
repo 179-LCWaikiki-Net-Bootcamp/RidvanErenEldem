@@ -58,6 +58,15 @@ namespace Controllers
             var directorResource = mapper.Map<Director, DirectorResource>(result.director);
             return Ok(directorResource);
         }
-        
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            var result = await directorService.DeleteAsync(id);
+            if(!result.success)
+                return BadRequest(result.message);
+            
+            var directorResource = mapper.Map<Director, DirectorResource>(result.director);
+            return Ok(directorResource);
+        }
     }
 }

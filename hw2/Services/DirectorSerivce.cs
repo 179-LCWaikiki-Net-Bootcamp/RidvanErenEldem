@@ -61,5 +61,25 @@ namespace Services
                 return new DirectorResponse($"An error occurred while updating director: {ex.Message}");
             }
         }
+
+        public async Task<DirectorResponse> DeleteAsync(int id)
+        {
+            var existing = await directorRepository.GetByIdAsync(id);
+
+            if (existing == null)
+                return new DirectorResponse("Director Not Found");
+            
+            try
+            {
+                directorRepository.Remove(existing);
+                await unitOfWork.CompleteAsync();
+
+                return new DirectorResponse(existing);
+            }
+            catch (Exception ex)
+            {
+                return new DirectorResponse($"An error occurred while removing director: {ex.Message}");
+            }
+        }
     }
 }
