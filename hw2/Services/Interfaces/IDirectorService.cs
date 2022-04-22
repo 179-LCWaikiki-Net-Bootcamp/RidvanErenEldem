@@ -12,5 +12,6 @@ namespace Services.Interfaces
 
         Task<DirectorResponse> SaveAsync(Director director);
         Task<List<Director>> GetAllAsync();
+        Task<DirectorResponse> UpdateAsync(int id, Director director);
     }
 }

@@ -38,5 +38,28 @@ namespace Services
         {
             return await directorRepository.GetAllAsync();
         }
+
+        public async Task<DirectorResponse> UpdateAsync(int id, Director director)
+        {
+            var existing = await directorRepository.GetByIdAsync(id);
+
+            if(existing == null)
+                return new DirectorResponse("Director Not Found");
+            
+            existing.Name =  director.Name;
+            existing.Birthday = director.Birthday;
+            
+            try
+            {
+                directorRepository.Update(existing);
+                await unitOfWork.CompleteAsync();
+
+                return new DirectorResponse(existing);
+            }
+            catch (Exception ex)
+            {
+                return new DirectorResponse($"An error occurred while updating director: {ex.Message}");
+            }
+        }
     }
 }
