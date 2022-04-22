@@ -14,7 +14,10 @@ namespace Mapping
         {
             CreateMap<Director, DirectorResource>(MemberList.None);
             CreateMap<SaveDirectorResource, Director>(MemberList.None);
+
             CreateMap<Movie, Movie>(MemberList.None);
+            CreateMap<Movie, MovieResource>(MemberList.None);
+            CreateMap<SaveMovieResource, Movie>(MemberList.None);
         }
     }
 }
