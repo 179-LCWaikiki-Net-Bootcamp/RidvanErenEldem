@@ -6,15 +6,14 @@ This project is a simple movie API with two tables
 
 HTTP|RETURN|DESCRIPTION|
 |---|---|---|
-|GET|'List<Movie>'| Gets the list of movies|
-|POST|'MovieResource'| Adds a movie to the table|
-|PUT|'MovieResource'| Updates the movie|
-|DELETE|'MovieResource'| Deletes the movie|
-|PUT|'SearchMovieResource'| Searches the given parameters|
+|GET|`List<Movie>`| Gets the list of movies|
+|POST|`MovieResource`| Adds a movie to the table|
+|PUT|`MovieResource`| Updates the movie|
+|DELETE|`MovieResource`| Deletes the movie|
+|PUT|`SearchMovieResource`| Searches the given parameters|
 ---
 
 >End points in director table are same as movie table only the parameters are changed
-
 >How To Run
 
 You need to install the MS SQL to your computer than edit the connection string for your liking.
